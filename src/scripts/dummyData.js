@@ -1,36 +1,3 @@
-const users = [
-  {
-    id: "111",
-    username: "st0rm",
-    email: "storm@xmen.com",
-    password: "password",
-  },
-  {
-    id: "222",
-    username: "r0gue",
-    email: "rogue@xmen.com",
-    password: "password",
-  },
-  {
-    id: "333",
-    username: "nightcrawler",
-    email: "nc@xmen.com",
-    password: "password",
-  },
-  {
-    id: "444",
-    username: "she-hulk",
-    email: "she.hulk@bannerlaw.com",
-    password: "password",
-  },
-  {
-    id: "555",
-    username: "phoenix",
-    email: "phoenix@xmen.com",
-    password: "password",
-  },
-];
-
 export const books = [
   {
     id: "1",
@@ -40,14 +7,14 @@ export const books = [
   },
   {
     id: "12",
-    title: "some title here",
-    author: "some name here",
-    notes: "something here",
+    title: "some other title here",
+    author: "some other name here",
+    notes: "something else here",
   },
   {
     id: "123",
-    title: "some title here",
-    author: "some name here",
-    notes: "something here",
+    title: "again some title here",
+    author: "again some name here",
+    notes: "again something else here",
   },
 ];
