@@ -1,20 +1,18 @@
-import { books } from "@/scripts/dummyData";
 import Book from "./Book";
+import { fetchBooks } from "../scripts/data";
 
-export default function Books() {
+export default async function Books() {
+  const books = await fetchBooks();
   return (
     <>
-      {books.map((book, index) => {
+      {books.map((book) => {
         return (
-          <>
-            <Book
-              key={index}
-              title={book.title}
-              author={book.author}
-              notes={book.notes}
-            />
-            {/* edit/delete btns here */}
-          </>
+          <Book
+            key={book.id}
+            title={book.title}
+            author={book.author}
+            notes={book.notes}
+          />
         );
       })}
     </>
