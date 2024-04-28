@@ -1,8 +1,19 @@
+"use client";
+
 import { createBook } from "@/scripts/actions";
+import { useRef } from "react";
 
 export default function Form() {
+  const ref = useRef<HTMLFormElement>(null);
+
   return (
-    <form action={createBook}>
+    <form
+      ref={ref}
+      action={async (formData) => {
+        await createBook(formData);
+        ref.current?.reset();
+      }}
+    >
       <div className="flex gap-2 justify-center">
         {/* title */}
         <label htmlFor="title">title:</label>
