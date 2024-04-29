@@ -1,6 +1,6 @@
 import Book from "./Book";
 import { fetchBooks } from "../scripts/data";
-import EditBookBtn from "./EditBookBtn";
+import { EditBookBtn, DeleteBookBtn } from "./BookBtns";
 
 export default async function Books() {
   const books = await fetchBooks();
@@ -18,7 +18,10 @@ export default async function Books() {
               author={book.author}
               notes={book.notes}
             />
-            <EditBookBtn id={book.id} />
+            <div className="flex">
+              <EditBookBtn id={book.id} />
+              <DeleteBookBtn id={book.id} />
+            </div>
           </div>
         );
       })}

@@ -53,3 +53,14 @@ export async function updateBook(id: string, formData: FormData) {
   revalidatePath("/books");
   redirect("/books");
 }
+
+// submit a delete
+export async function deleteBook(bookID: string) {
+  try {
+    await sql`DELETE FROM books WHERE id = ${bookID}`;
+  } catch (err) {
+    console.error("error deleting book", err);
+    throw new Error("failed to delete book");
+  }
+  revalidatePath("/books");
+}
