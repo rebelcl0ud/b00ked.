@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 const FormSchema = z.object({
   id: z.string(),
@@ -12,6 +13,7 @@ const FormSchema = z.object({
 });
 
 const CreateBook = FormSchema.omit({ id: true });
+const UpdateBook = FormSchema.omit({ id: true });
 
 export async function createBook(formData: FormData) {
   console.log("createBook() fired");
@@ -28,4 +30,26 @@ export async function createBook(formData: FormData) {
   } catch (err) {
     console.error("error inserting book data", err);
   }
+}
+
+// submit update
+export async function updateBook(id: string, formData: FormData) {
+  console.log("updateBook() fired");
+
+  const { title, author, notes } = UpdateBook.parse({
+    title: formData.get("title"),
+    author: formData.get("author"),
+    notes: formData.get("notes"),
+  });
+
+  try {
+    await sql`
+        UPDATE books 
+        SET title = ${title}, author = ${author}, notes = ${notes} 
+        WHERE id = ${id}`;
+  } catch (err) {
+    console.error("error updating book", err);
+  }
+  revalidatePath("/books");
+  redirect("/books");
 }
